@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Hattrick.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Hattrick.Services;
 
 namespace Hattrick
 {
@@ -39,6 +40,8 @@ namespace Hattrick
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddSingleton<WalletService, FakeWalletService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
